@@ -69,15 +69,7 @@
     button:hover {
       background: #1e40af;
     }
-    .btn-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-    .btn-group button {
-      flex: 1;
-    }
-    .result, .comparison {
+    .result {
       margin-top: 2rem;
       padding: 1rem;
       background: #eff6ff;
@@ -113,8 +105,7 @@
       color: #f0f0f0;
       border-color: #444;
     }
-    body.dark .result,
-    body.dark .comparison {
+    body.dark .result {
       background: #2b2b2b;
       border-color: #3b82f6;
     }
@@ -136,7 +127,31 @@
       from { opacity: 0; transform: translateX(-20px); }
       to { opacity: 1; transform: translateX(0); }
     }
+    .social-icons {
+      margin-top: 0.5rem;
+    }
+    .social-icons a {
+      color: white;
+      margin: 0 0.5rem;
+      font-size: 1.4rem;
+      text-decoration: none;
+    }
+    .content-section {
+      max-width: 700px;
+      margin: 3rem auto;
+      padding: 1rem;
+      line-height: 1.8;
+    }
+    .content-section h2 {
+      color: #1d4ed8;
+      margin-bottom: 0.5rem;
+    }
+    .content-section h3 {
+      color: #2563eb;
+      margin-top: 1.5rem;
+    }
   </style>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
   <header>
@@ -172,19 +187,41 @@
       <option value="retired">Retired</option>
     </select>
 
-    <div class="btn-group">
-      <button onclick="calculateTax()">Calculate Tax</button>
-      <button onclick="compareScenarios()">Compare Scenarios</button>
-      <button onclick="exportPDF()">Export PDF</button>
-      <button onclick="exportCSV()">Export CSV</button>
-    </div>
+    <button onclick="calculateTax()">Calculate Tax</button>
 
     <div class="result" id="result"></div>
-    <div class="comparison" id="comparison"></div>
+  </div>
+
+  <div class="content-section">
+    <h2>Understanding Your Salary and Tax Obligations</h2>
+    <p>The Advance Tax Calculator 2025 helps Pakistani individuals easily estimate their tax obligations based on income, expenses, and professional background. With updated rules for the 2025 fiscal year, this tool ensures accurate and quick results.</p>
+
+    <h3>What is Advance Tax?</h3>
+    <p>Advance tax is a pre-payment of income tax by individuals and businesses based on projected annual income. It reduces year-end tax burden and improves compliance.</p>
+
+    <h3>Who Should Use This Calculator?</h3>
+    <p>This calculator is suitable for:</p>
+    <ul>
+      <li>Salaried professionals</li>
+      <li>Business owners</li>
+      <li>Freelancers</li>
+      <li>Retired individuals</li>
+    </ul>
+
+    <h3>Why Use This Tool?</h3>
+    <p>With a user-friendly design, responsive interface, and mobile compatibility, this calculator helps users:</p>
+    <ul>
+      <li>Estimate total tax liability</li>
+      <li>Plan financial decisions effectively</li>
+      <li>Understand income vs. expenses</li>
+    </ul>
   </div>
 
   <footer>
-    Made by Muhammad Azeem Bhatti from SEBT-X
+    <p>Made by Muhammad Azeem Bhatti from SEBT-X</p>
+    <div class="social-icons">
+      <a href="https://facebook.com/azeem2kool" target="_blank"><i class="fab fa-facebook"></i></a>
+    </div>
   </footer>
 
   <script>
@@ -224,52 +261,17 @@
 
     function toggleTheme() {
       document.body.classList.toggle('dark');
+      localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
     }
 
-    function exportPDF() {
-      const result = document.getElementById('result').innerText;
-      const win = window.open('', '', 'height=700,width=700');
-      win.document.write('<html><head><title>Tax Report</title></head><body>');
-      win.document.write('<h1>Tax Report 2025</h1>');
-      win.document.write(`<pre>${result}</pre>`);
-      win.document.write('</body></html>');
-      win.document.close();
-      win.print();
+    function loadTheme() {
+      const theme = localStorage.getItem('theme');
+      if (theme === 'dark') {
+        document.body.classList.add('dark');
+      }
     }
 
-    function exportCSV() {
-      const income = document.getElementById('income').value || 0;
-      const otherIncome = document.getElementById('otherIncome').value || 0;
-      const expenses = document.getElementById('expenses').value || 0;
-      const loans = document.getElementById('loans').value || 0;
-      const filer = document.getElementById('filer').value;
-      const profession = document.getElementById('profession').value;
-      const { tax, taxableIncome } = calculateTax(income, otherIncome, expenses, loans, filer, profession);
-
-      const csvContent = `Primary Income,Other Income,Expenses,Loans,Filer,Profession,Taxable Income,Estimated Tax\n${income},${otherIncome},${expenses},${loans},${filer},${profession},${taxableIncome},${tax}\n`;
-
-      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement("a");
-      link.setAttribute("href", url);
-      link.setAttribute("download", "tax_report_2025.csv");
-      link.style.visibility = 'hidden';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    }
-
-    function compareScenarios() {
-      const scenarioA = calculateTax();
-      const scenarioB = calculateTax(1500000, 100000, 200000, 100000, 'no', 'business');
-
-      const comparisonHTML = `
-        <h3>Scenario Comparison</h3>
-        <p><strong>Scenario A</strong>: PKR ${scenarioA.tax.toLocaleString()} (Taxable: PKR ${scenarioA.taxableIncome.toLocaleString()})</p>
-        <p><strong>Scenario B</strong>: PKR ${scenarioB.tax.toLocaleString()} (Taxable: PKR ${scenarioB.taxableIncome.toLocaleString()})</p>
-      `;
-      document.getElementById('comparison').innerHTML = comparisonHTML;
-    }
+    window.onload = loadTheme;
   </script>
 </body>
 </html>
