@@ -14,7 +14,6 @@
       padding: 0;
       background: linear-gradient(135deg, #e3f2fd, #ffffff);
       color: #333;
-      transition: background 0.5s ease, color 0.5s ease;
     }
     header, footer {
       background-color: #1d4ed8;
@@ -82,6 +81,15 @@
       border-radius: 12px;
       font-size: 1.1rem;
     }
+    .breakdown {
+      margin-top: 1.5rem;
+      background: #f0f8ff;
+      padding: 1rem;
+      border-radius: 12px;
+      border: 1px solid #dbeafe;
+      font-size: 0.95rem;
+      color: #1e3a8a;
+    }
     @media (max-width: 600px) {
       body {
         padding: 1rem;
@@ -127,7 +135,7 @@
 </head>
 <body>
   <header>
-    <h1>Advance Tax Calculator 2025 - Pakistan</h1>
+    <h1 style="color: white;">Advance Tax Calculator 2025 - Pakistan</h1>
   </header>
 
   <div class="container">
@@ -188,20 +196,20 @@
   </div>
 
   <footer>
-    <p>Made by Muhammad Azeem Bhatti from SEBT-X</p>
+    <p>Made by <a href="https://facebook.com/azeem2kool" target="_blank" style="color:white; text-decoration: underline;">Muhammad Azeem Bhatti</a> from SEBT-X</p>
     <div class="social-icons">
       <a href="https://facebook.com/azeem2kool" target="_blank"><i class="fab fa-facebook"></i></a>
     </div>
   </footer>
 
   <script>
-    function calculateTax(income, otherIncome, expenses, loans, filer, profession) {
-      income = parseFloat(income ?? document.getElementById('income').value) || 0;
-      otherIncome = parseFloat(otherIncome ?? document.getElementById('otherIncome').value) || 0;
-      expenses = parseFloat(expenses ?? document.getElementById('expenses').value) || 0;
-      loans = parseFloat(loans ?? document.getElementById('loans').value) || 0;
-      filer = filer ?? document.getElementById('filer').value;
-      profession = profession ?? document.getElementById('profession').value;
+    function calculateTax() {
+      const income = parseFloat(document.getElementById('income').value) || 0;
+      const otherIncome = parseFloat(document.getElementById('otherIncome').value) || 0;
+      const expenses = parseFloat(document.getElementById('expenses').value) || 0;
+      const loans = parseFloat(document.getElementById('loans').value) || 0;
+      const filer = document.getElementById('filer').value;
+      const profession = document.getElementById('profession').value;
 
       const totalIncome = income + otherIncome;
       const deductions = expenses + loans;
@@ -224,9 +232,17 @@
         <h3>Estimated Tax Payable:</h3>
         <p><strong>PKR ${tax.toLocaleString()}</strong></p>
         <p><em>(Taxable Income: PKR ${taxableIncome.toLocaleString()})</em></p>
+        <div class="breakdown">
+          <strong>Breakdown:</strong><br>
+          Total Income: PKR ${totalIncome.toLocaleString()}<br>
+          Total Deductions (Expenses + Loans): PKR ${deductions.toLocaleString()}<br>
+          Filer Status: ${filer === 'yes' ? 'Filer (15%)' : 'Non-Filer (20%)'}<br>
+          Profession Modifier: ${modifier}<br>
+          Base Tax Rate: ${(baseRate * 100).toFixed(0)}%<br>
+          Final Tax Rate Applied: ${(baseRate * modifier * 100).toFixed(2)}%
+        </div>
       `;
       document.getElementById('result').innerHTML = resultHTML;
-      return { tax, taxableIncome };
     }
   </script>
 </body>
