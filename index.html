@@ -1,264 +1,262 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Pakistan Salary Tax Calculator 2024-25 | Calculate Net Salary with Deductions</title>
-  <meta name="description" content="Accurate Pakistan salary tax calculator with deductions, benefits, and tax year selection. Calculate your net salary after income tax, deductions, and allowances for 2023-24 and 2024-25 tax years.">
-  <style>
-    /* Base Styles */
-    :root {
-      --primary-color: #2c3e50;
-      --secondary-color: #3498db;
-      --accent-color: #e74c3c;
-    }
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      font-family: 'Helvetica Neue', Arial, sans-serif;
-      background: #f8f9fa;
-      color: var(--primary-color);
-      line-height: 1.6;
-    }
-    .container {
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 1.5rem;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
-    h1 {
-      color: var(--primary-color);
-      text-align: center;
-      margin-bottom: 1.5rem;
-      font-size: 2rem;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Salary Tax Calculator & Guide 2024</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
 
-    /* Form Styles */
-    .calculator-section {
-      margin-bottom: 1.5rem;
-      padding: 1rem;
-      border: 1px solid #eee;
-      border-radius: 8px;
-    }
-    .section-toggle {
-      background: var(--secondary-color);
-      color: white;
-      padding: 0.5rem 1rem;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      width: 100%;
-      text-align: left;
-      margin-bottom: 0.5rem;
-    }
-    .input-group {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-      margin-bottom: 1rem;
-    }
-    label {
-      display: block;
-      margin-bottom: 0.5rem;
-      color: var(--primary-color);
-      font-weight: 500;
-    }
-    input, select {
-      width: 100%;
-      padding: 0.8rem;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      font-size: 1rem;
-      transition: border-color 0.3s;
-    }
-    input:focus, select:focus {
-      border-color: var(--secondary-color);
-      outline: none;
-    }
+        body {
+            background: #f0f2f5;
+            line-height: 1.6;
+            color: #333;
+        }
 
-    /* Results Section */
-    .results {
-      background: #f8f9fa;
-      padding: 1.5rem;
-      border-radius: 8px;
-      margin-top: 1.5rem;
-    }
-    .result-item {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 0.8rem;
-      padding: 0.5rem 0;
-      border-bottom: 1px solid #eee;
-    }
-    .result-value {
-      color: var(--secondary-color);
-      font-weight: 600;
-    }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
 
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      .container {
-        margin: 1rem;
-        padding: 1rem;
-      }
-      .input-group {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+        .calculator-section, .content-section {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            padding: 30px;
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #34495e;
+            margin: 25px 0 15px;
+            font-size: 1.8em;
+        }
+
+        h3 {
+            color: #2c3e50;
+            margin: 20px 0 12px;
+            font-size: 1.4em;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #34495e;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, select:focus {
+            border-color: #2196F3;
+            outline: none;
+        }
+
+        .results {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+            font-size: 16px;
+        }
+
+        .result-value {
+            font-weight: 600;
+            color: #2196F3;
+        }
+
+        .content-section {
+            padding: 30px 40px;
+        }
+
+        .faq-section {
+            border-top: 2px solid #eee;
+            margin-top: 30px;
+            padding-top: 25px;
+        }
+
+        .faq-item {
+            background: #f8f9fa;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
+            .calculator-section, .content-section {
+                padding: 20px;
+            }
+
+            .result-item {
+                flex-direction: column;
+            }
+
+            .result-value {
+                margin-top: 5px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            html {
+                font-size: 14px;
+            }
+
+            .result-item {
+                font-size: 14px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Pakistan Salary Tax Calculator</h1>
-    
-    <div class="calculator-section">
-      <div class="input-group">
-        <div>
-          <label for="taxYear">Tax Year:</label>
-          <select id="taxYear">
-            <option value="2024">2024-25</option>
-            <option value="2023">2023-24</option>
-          </select>
+    <div class="container">
+        <h1>2024 Salary Tax Calculator & Guide</h1>
+
+        <!-- Calculator Section -->
+        <div class="calculator-section">
+            <h2>Interactive Tax Calculator</h2>
+            <div class="input-group">
+                <label for="income">Annual Gross Income ($)</label>
+                <input type="number" id="income" placeholder="Enter your annual income">
+            </div>
+            <div class="input-group">
+                <label for="deductions">Deductions ($)</label>
+                <input type="number" id="deductions" placeholder="Enter deductions">
+            </div>
+            <div class="input-group">
+                <label for="tax-year">Tax Year</label>
+                <select id="tax-year">
+                    <option>2024</option>
+                    <option>2023</option>
+                </select>
+            </div>
+            <div class="results">
+                <div class="result-item">
+                    <span>Taxable Income:</span>
+                    <span class="result-value" id="taxable-income">\$0</span>
+                </div>
+                <div class="result-item">
+                    <span>Total Tax Payable:</span>
+                    <span class="result-value" id="tax-amount">\$0</span>
+                </div>
+                <div class="result-item">
+                    <span>Net Income:</span>
+                    <span class="result-value" id="net-income">\$0</span>
+                </div>
+            </div>
         </div>
-        <div>
-          <label for="annualSalary">Annual Salary (PKR):</label>
-          <input type="number" id="annualSalary" placeholder="1,200,000" step="1000">
+
+        <!-- Content Section -->
+        <div class="content-section">
+            <article>
+                <h2>Understanding Salary Tax Calculators</h2>
+                <p>A salary tax calculator is an essential financial tool that helps employees and employers estimate income tax liabilities based on gross salary, deductions, and applicable tax rates. These digital calculators simplify complex tax calculations by automating the process using up-to-date tax brackets and regulations.</p>
+
+                <h3>Key Components of Tax Calculations</h3>
+                <ul>
+                    <li><strong>Gross Income:</strong> Total earnings before any deductions</li>
+                    <li><strong>Tax Deductions:</strong> Allowable reductions in taxable income</li>
+                    <li><strong>Tax Brackets:</strong> Progressive tax rates applied to income ranges</li>
+                    <li><strong>Net Income:</strong> Take-home pay after tax deductions</li>
+                </ul>
+
+                <h3>How Salary Tax Calculators Work</h3>
+                <p>Modern tax calculators use sophisticated algorithms to:</p>
+                <ol>
+                    <li>Determine taxable income by subtracting eligible deductions</li>
+                    <li>Apply appropriate tax rates to different income brackets</li>
+                    <li>Calculate total tax liability</li>
+                    <li>Estimate net income after taxes</li>
+                </ol>
+
+                <div class="faq-section">
+                    <h2>Frequently Asked Questions</h2>
+                    <div class="faq-item">
+                        <h3>How accurate are online tax calculators?</h3>
+                        <p>Reputable calculators using current tax data are generally accurate, but should be verified with professional advice for complex situations.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>Do tax calculators store personal information?</h3>
+                        <p>Quality calculators (like ours) perform calculations client-side without storing any data.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>Can I use tax calculators for self-employment income?</h3>
+                        <p>Specialized calculators are needed for self-employment taxes that include SECA contributions.</p>
+                    </div>
+                </div>
+            </article>
         </div>
-      </div>
     </div>
 
-    <!-- Deductions Section -->
-    <div class="calculator-section">
-      <button class="section-toggle" type="button">▼ Deductions</button>
-      <div class="input-group">
-        <div>
-          <label for="medicalExpenses">Medical Expenses:</label>
-          <input type="number" id="medicalExpenses" step="1000">
-        </div>
-        <div>
-          <label for="charity">Charitable Donations:</label>
-          <input type="number" id="charity" step="1000">
-        </div>
-      </div>
-    </div>
+    <script>
+        function calculateTax() {
+            const income = parseFloat(document.getElementById('income').value) || 0;
+            const deductions = parseFloat(document.getElementById('deductions').value) || 0;
+            
+            const taxableIncome = Math.max(income - deductions, 0);
+            let tax = 0;
 
-    <!-- Benefits Section -->
-    <div class="calculator-section">
-      <button class="section-toggle" type="button">▼ Benefits & Allowances</button>
-      <div class="input-group">
-        <div>
-          <label for="housingAllowance">Housing Allowance:</label>
-          <input type="number" id="housingAllowance" step="1000">
-        </div>
-        <div>
-          <label for="conveyanceAllowance">Conveyance Allowance:</label>
-          <input type="number" id="conveyanceAllowance" step="1000">
-        </div>
-      </div>
-    </div>
+            // Tax bracket calculation
+            if(taxableIncome > 50000) {
+                tax = (taxableIncome - 50000) * 0.3 + 5000;
+            } else if(taxableIncome > 20000) {
+                tax = (taxableIncome - 20000) * 0.2;
+            }
 
-    <!-- Results -->
-    <div class="results">
-      <div class="result-item">
-        <span>Annual Taxable Income:</span>
-        <span class="result-value" id="taxableIncome">0</span>
-      </div>
-      <div class="result-item">
-        <span>Total Tax Payable:</span>
-        <span class="result-value" id="totalTax">0</span>
-      </div>
-      <div class="result-item">
-        <span>Monthly Net Salary:</span>
-        <span class="result-value" id="netSalary">0</span>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    // Tax Slabs Data
-    const taxSlabs = {
-      2023: [
-        { max: 600000, rate: 0 },
-        { max: 1200000, rate: 0.05 },
-        { max: 2400000, rate: 0.15 },
-        { max: 3600000, rate: 0.25 },
-        { max: Infinity, rate: 0.35 }
-      ],
-      2024: [
-        { max: 600000, rate: 0 },
-        { max: 1200000, rate: 0.05 },
-        { max: 2200000, rate: 0.15 },
-        { max: 3200000, rate: 0.25 },
-        { max: 4100000, rate: 0.30 },
-        { max: Infinity, rate: 0.35 }
-      ]
-    };
-
-    // Calculator Function
-    function calculateTax() {
-      // Get Input Values
-      const taxYear = document.getElementById('taxYear').value;
-      const annualSalary = parseFloat(document.getElementById('annualSalary').value) || 0;
-      const medicalExpenses = parseFloat(document.getElementById('medicalExpenses').value) || 0;
-      const charity = parseFloat(document.getElementById('charity').value) || 0;
-      const housingAllowance = parseFloat(document.getElementById('housingAllowance').value) || 0;
-      const conveyanceAllowance = parseFloat(document.getElementById('conveyanceAllowance').value) || 0;
-
-      // Calculate Taxable Income
-      const taxableIncome = annualSalary - medicalExpenses - charity + housingAllowance + conveyanceAllowance;
-      
-      // Get Appropriate Tax Slabs
-      const slabs = taxSlabs[taxYear];
-      let remainingIncome = taxableIncome;
-      let totalTax = 0;
-
-      for (let i = 0; i < slabs.length; i++) {
-        const currentSlab = slabs[i];
-        const previousSlab = slabs[i-1] ? slabs[i-1].max : 0;
-        
-        if (remainingIncome > currentSlab.max) {
-          totalTax += (currentSlab.max - previousSlab) * currentSlab.rate;
-          remainingIncome -= (currentSlab.max - previousSlab);
-        } else {
-          totalTax += remainingIncome * currentSlab.rate;
-          break;
+            // Update results
+            document.getElementById('taxable-income').textContent = `$${taxableIncome.toFixed(2)}`;
+            document.getElementById('tax-amount').textContent = `$${tax.toFixed(2)}`;
+            document.getElementById('net-income').textContent = `$${(income - tax).toFixed(2)}`;
         }
-      }
 
-      // Update UI
-      const formatter = new Intl.NumberFormat('en-PK', {
-        style: 'currency',
-        currency: 'PKR',
-        maximumFractionDigits: 0
-      });
+        // Event listeners for real-time calculation
+        document.querySelectorAll('input, select').forEach(element => {
+            element.addEventListener('input', calculateTax);
+        });
 
-      document.getElementById('taxableIncome').textContent = formatter.format(taxableIncome);
-      document.getElementById('totalTax').textContent = formatter.format(totalTax);
-      document.getElementById('netSalary').textContent = formatter.format((annualSalary - totalTax) / 12);
-    }
-
-    // Event Listeners
-    document.querySelectorAll('input, select').forEach(element => {
-      element.addEventListener('input', calculateTax);
-    });
-
-    // Section Toggles
-    document.querySelectorAll('.section-toggle').forEach(button => {
-      button.addEventListener('click', () => {
-        const section = button.parentElement;
-        const inputs = section.querySelector('.input-group');
-        inputs.style.display = inputs.style.display === 'none' ? 'grid' : 'none';
-        button.textContent = inputs.style.display === 'none' ? '▶' : '▼';
-      });
-    });
-
-    // Initial Calculation
-    calculateTax();
-  </script>
+        // Initial calculation
+        calculateTax();
+    </script>
 </body>
 </html>
