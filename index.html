@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pakistan Salary Tax Calculator 2025 | Calculate Net Salary </title>
+  <meta name="description" content="Accurate Pakistan salary tax calculator with deductions, benefits, and tax year selection. Calculate your net salary after income tax, deductions, and allowances for 2025 tax year.">
+  <style>
+    <meta name="robots" content="index,follow"> 
+    
+    /* Base Styles */
+    :root {
+      --primary-color: #2c3e50;
+      --secondary-color: #3498db;
+      --accent-color: #e74c3c;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      background: #f8f9fa;
+      color: var(--primary-color);
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 1.5rem;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: var(--primary-color);
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-size: 2rem;
+    }
+
+    /* Form Styles */
+    .calculator-section {
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+      border: 1px solid #eee;
+      border-radius: 8px;
+    }
+    .section-toggle {
+      background: var(--secondary-color);
+      color: white;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+      text-align: left;
+      margin-bottom: 0.5rem;
+    }
+    .input-group {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: var(--primary-color);
+      font-weight: 500;
+    }
+    input, select {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 1rem;
+      transition: border-color 0.3s;
+    }
+    input:focus, select:focus {
+      border-color: var(--secondary-color);
+      outline: none;
+    }
+
+    /* Results Section */
+    .results {
+      background: #f8f9fa;
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-top: 1.5rem;
+    }
+    .result-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.8rem;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #eee;
+    }
+    .result-value {
+      color: var(--secondary-color);
+      font-weight: 600;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .container {
+        margin: 1rem;
+        padding: 1rem;
+      }
+      .input-group {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Pakistan Salary Tax Calculator</h1>
+    
+    <div class="calculator-section">
+      <div class="input-group">
+        <div>
+          <label for="taxYear">Tax Year:</label>
+          <select id="taxYear">
+            <option value="2024">2024-25</option>
+            <option value="2023">2023-24</option>
+          </select>
+        </div>
+        <div>
+          <label for="annualSalary">Annual Salary (PKR):</label>
+          <input type="number" id="annualSalary" placeholder="1,200,000" step="1000">
+        </div>
+      </div>
+    </div>
+
+    <!-- Deductions Section -->
+    <div class="calculator-section">
+      <button class="section-toggle" type="button">▼ Deductions</button>
+      <div class="input-group">
+        <div>
+          <label for="medicalExpenses">Medical Expenses:</label>
+          <input type="number" id="medicalExpenses" step="1000">
+        </div>
+        <div>
+          <label for="charity">Charitable Donations:</label>
+          <input type="number" id="charity" step="1000">
+        </div>
+      </div>
+    </div>
+
+    <!-- Benefits Section -->
+    <div class="calculator-section">
+      <button class="section-toggle" type="button">▼ Benefits & Allowances</button>
+      <div class="input-group">
+        <div>
+          <label for="housingAllowance">Housing Allowance:</label>
+          <input type="number" id="housingAllowance" step="1000">
+        </div>
+        <div>
+          <label for="conveyanceAllowance">Conveyance Allowance:</label>
+          <input type="number" id="conveyanceAllowance" step="1000">
+        </div>
+      </div>
+    </div>
+
+    <!-- Results -->
+    <div class="results">
+      <div class="result-item">
+        <span>Annual Taxable Income:</span>
+        <span class="result-value" id="taxableIncome">0</span>
+      </div>
+      <div class="result-item">
+        <span>Total Tax Payable:</span>
+        <span class="result-value" id="totalTax">0</span>
+      </div>
+      <div class="result-item">
+        <span>Monthly Net Salary:</span>
+        <span class="result-value" id="netSalary">0</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Tax Slabs Data
+    const taxSlabs = {
+      2023: [
+        { max: 600000, rate: 0 },
+        { max: 1200000, rate: 0.05 },
+        { max: 2400000, rate: 0.15 },
+        { max: 3600000, rate: 0.25 },
+        { max: Infinity, rate: 0.35 }
+      ],
+      2024: [
+        { max: 600000, rate: 0 },
+        { max: 1200000, rate: 0.05 },
+        { max: 2200000, rate: 0.15 },
+        { max: 3200000, rate: 0.25 },
+        { max: 4100000, rate: 0.30 },
+        { max: Infinity, rate: 0.35 }
+      ]
+    };
+
+    // Calculator Function
+    function calculateTax() {
+      // Get Input Values
+      const taxYear = document.getElementById('taxYear').value;
+      const annualSalary = parseFloat(document.getElementById('annualSalary').value) || 0;
+      const medicalExpenses = parseFloat(document.getElementById('medicalExpenses').value) || 0;
+      const charity = parseFloat(document.getElementById('charity').value) || 0;
+      const housingAllowance = parseFloat(document.getElementById('housingAllowance').value) || 0;
+      const conveyanceAllowance = parseFloat(document.getElementById('conveyanceAllowance').value) || 0;
+
+      // Calculate Taxable Income
+      const taxableIncome = annualSalary - medicalExpenses - charity + housingAllowance + conveyanceAllowance;
+      
+      // Get Appropriate Tax Slabs
+      const slabs = taxSlabs[taxYear];
+      let remainingIncome = taxableIncome;
+      let totalTax = 0;
+
+      for (let i = 0; i < slabs.length; i++) {
+        const currentSlab = slabs[i];
+        const previousSlab = slabs[i-1] ? slabs[i-1].max : 0;
+        
+        if (remainingIncome > currentSlab.max) {
+          totalTax += (currentSlab.max - previousSlab) * currentSlab.rate;
+          remainingIncome -= (currentSlab.max - previousSlab);
+        } else {
+          totalTax += remainingIncome * currentSlab.rate;
+          break;
+        }
+      }
+
+      // Update UI
+      const formatter = new Intl.NumberFormat('en-PK', {
+        style: 'currency',
+        currency: 'PKR',
+        maximumFractionDigits: 0
+      });
+
+      document.getElementById('taxableIncome').textContent = formatter.format(taxableIncome);
+      document.getElementById('totalTax').textContent = formatter.format(totalTax);
+      document.getElementById('netSalary').textContent = formatter.format((annualSalary - totalTax) / 12);
+    }
+
+    // Event Listeners
+    document.querySelectorAll('input, select').forEach(element => {
+      element.addEventListener('input', calculateTax);
+    });
+
+    // Section Toggles
+    document.querySelectorAll('.section-toggle').forEach(button => {
+      button.addEventListener('click', () => {
+        const section = button.parentElement;
+        const inputs = section.querySelector('.input-group');
+        inputs.style.display = inputs.style.display === 'none' ? 'grid' : 'none';
+        button.textContent = inputs.style.display === 'none' ? '▶' : '▼';
+      });
+    });
+
+    // Initial Calculation
+    calculateTax();
+  </script>
+</body>
+</html>
+
+<h2>Salary Tax Calculator: Simplifying Income Tax Computation</h2>
+<p>Understanding your income tax liability is crucial for effective financial planning and compliance with government regulations. A <strong>Salary Tax Calculator</strong> is an essential tool that helps salaried individuals estimate the amount of tax they owe based on their income, deductions, and applicable tax slabs. This article provides a comprehensive overview of salary tax calculators, how they work, and why they are important, with a focus on Pakistan's tax system for the fiscal year 2024-25.</p>
+<h2>What is a Salary Tax Calculator?</h2>
+<p>A <strong>Salary Tax Calculator</strong> is an online or software tool designed to compute the income tax payable on your salary. By inputting your annual or monthly salary, along with other relevant details such as deductions and allowances, the calculator applies the current tax rates and slabs to estimate your tax liability. This helps individuals understand how much tax they need to pay and what their take-home salary will be after deductions.</p>
+<h2>How Does a Salary Tax Calculator Work?</h2>
+<h2>Step 1: Input Salary Details</h2>
+<p>You start by entering your <strong>gross salary</strong>, which may be monthly or annual. Some calculators also allow input of additional income sources.</p>
+<h2>Step 2: Enter Deductions and Benefits</h2>
+<p>Many calculators provide options to include <strong>deductions</strong> such as medical expenses, charitable donations, and benefits like housing or conveyance allowances. These reduce your taxable income.</p>
+<h2>Step 3: Select Tax Year and Regime</h2>
+<p>Tax rates and slabs may vary by fiscal year. You select the relevant <strong>tax year</strong> (e.g., 2024-25) to ensure accurate calculation. Some countries offer different tax regimes with varying rules.</p>
+<h2>Step 4: Calculation Based on Tax Slabs</h2>
+<p>The calculator applies the tax slabs to your taxable income. For example, in Pakistan for 2024-25, the slabs are progressive, starting with 0% tax up to Rs. 600,000, then increasing rates up to 35% for incomes above Rs. 4,100,000.</p>
+<h2>Step 5: Output Tax Liability and Net Salary</h2>
+<p>Finally, the tool displays your <strong>annual tax payable</strong>, <strong>monthly tax</strong>, and <strong>net salary</strong> after tax deductions.</p>
+<h2>Benefits of Using a Salary Tax Calculator</h2>
+<ul>
+  <li>
+    <p><strong>Accuracy:</strong> Eliminates manual errors by applying official tax slabs and formulas.</p>
+  </li>
+  <li>
+    <p><strong>Convenience:</strong> Quickly calculates tax without needing deep tax knowledge.</p>
+  </li>
+  <li>
+    <p><strong>Financial Planning:</strong> Helps you plan your budget and savings by knowing your take-home pay.</p>
+  </li>
+  <li>
+    <p><strong>Comparison:</strong> Some calculators allow comparison between old and new tax regimes.</p>
+  </li>
+  <li>
+    <p><strong>Compliance:</strong> Ensures you are aware of your tax obligations and avoid penalties.</p>
+  </li>
+</ul>
+<h2>Important Components of a Salary Tax Calculator</h2>
+<h2>Deductions</h2>
+<p>Deductions reduce your taxable income. Common deductions in Pakistan include:</p>
+<ul>
+  <li>
+    <p>Medical expenses</p>
+  </li>
+  <li>
+    <p>Donations to approved charities</p>
+  </li>
+  <li>
+    <p>Pension contributions</p>
+  </li>
+  <li>
+    <p>Investments under sections like 80C, 80D, etc.</p>
+  </li>
+</ul>
+<h2>Benefits and Allowances</h2>
+<p>Certain allowances like housing and conveyance may be partially or fully exempt from tax, reducing your taxable income further.</p>
+<h2>Tax Year Selection</h2>
+<p>Tax rules change annually. Selecting the correct tax year ensures calculations reflect the current laws.</p>
+<h2>How to Calculate Your Income Tax Manually (Basic Overview)</h2>
+<ol>
+  <li>
+    <p><strong>Determine Gross Income:</strong> Sum all salary and income sources.</p>
+  </li>
+  <li>
+    <p><strong>Subtract Allowable Deductions:</strong> Medical, charity, pension, etc.</p>
+  </li>
+  <li>
+    <p><strong>Calculate Taxable Income:</strong> Gross income minus deductions.</p>
+  </li>
+  <li>
+    <p><strong>Apply Tax Slabs:</strong> Use the appropriate slab rates to compute tax.</p>
+  </li>
+  <li>
+    <p><strong>Subtract Tax Credits:</strong> Any prepaid tax or rebates.</p>
+  </li>
+  <li>
+    <p><strong>Calculate Net Salary:</strong> Gross salary minus tax payable.</p>
+  </li>
+</ol>
+<p>While this method works, it can be complex and time-consuming, which is why calculators are preferred.</p>
+<h2>Frequently Asked Questions (FAQs)</h2>
+<h2>Q1: How do I calculate income tax in Pakistan?</h2>
+<p>You can use an online salary tax calculator by entering your salary, deductions, and tax year. The calculator applies the latest tax slabs to estimate your payable tax.</p>
+<h2>Q2: What is the minimum taxable salary in Pakistan?</h2>
+<p>For the fiscal year 2024-25, income up to Rs. 600,000 annually is exempt from tax.</p>
+<h2>Q3: Can I include deductions in the salary tax calculator?</h2>
+<p>Yes, most calculators allow you to enter deductions like medical expenses and charitable donations to reduce taxable income.</p>
+<h2>Q4: How often do tax slabs change in Pakistan?</h2>
+<p>Tax slabs are usually updated annually in the federal budget, effective from July 1 each year.</p>
+<h2>Q5: Is it mandatory to file income tax returns if I have a salary?</h2>
+<p>Yes, salaried individuals whose income exceeds the exemption limit must file tax returns as per FBR regulations.</p>
+<h2>Conclusion</h2>
+<p>A <strong>Salary Tax Calculator</strong> is an indispensable tool for salaried individuals in Pakistan to estimate their income tax liability accurately and effortlessly. By incorporating deductions, benefits, and the latest tax slabs, these calculators simplify complex tax computations and help taxpayers stay compliant and financially prepared. Whether you are a first-time filer or a seasoned taxpayer, using a salary tax calculator ensures you understand your tax obligations clearly and avoid surprises during tax season.</p>
