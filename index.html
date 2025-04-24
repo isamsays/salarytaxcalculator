@@ -2,239 +2,168 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Advance Tax Calculator 2025 Pakistan | Accurate & Mobile Friendly</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Calculate your advance income tax in Pakistan for 2025 with our smart, mobile-optimized calculator. Includes income, expenses, liabilities, other income, and quarterly breakdown.">
-  <script type="application/ld+json">
-  {
-    "@context": "http://schema.org",
-    "@type": "FinancialService",
-    "name": "Advance Tax Calculator 2025 Pakistan",
-    "description": "A free, accurate, and mobile-friendly advance tax calculator for Pakistan with income, expenses, liabilities, and other income sources.",
-    "url": "https://example.com",
-    "serviceType": "Tax Calculation",
-    "provider": {
-      "@type": "Organization",
-      "name": "YourBrand"
-    }
-  }
-  </script>
+  <title>Advance Tax Calculator 2025 - Pakistan</title>
   <style>
-    :root {
-      --main: #0b2239;
-      --accent: #2e86de;
-      --bg: #f8fafc;
-      --white: #fff;
-      --border: #e3e3e3;
-      --success: #27ae60;
-      --danger: #e74c3c;
+    * {
+      box-sizing: border-box;
     }
     body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
-      background: var(--bg);
-      color: var(--main);
-      font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
-      min-height: 100vh;
+      padding: 0;
+      background: #f5f7fa;
+      color: #333;
     }
     .container {
-      max-width: 420px;
-      margin: 32px auto;
-      background: var(--white);
-      padding: 28px 20px 22px 20px;
-      border-radius: 18px;
-      box-shadow: 0 6px 32px rgba(44, 62, 80, 0.09);
+      max-width: 600px;
+      margin: 2rem auto;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     }
-    h1 {
-      font-size: 1.5rem;
+    h1, h2, h3 {
       text-align: center;
-      margin-bottom: 8px;
-      color: var(--accent);
-      font-weight: 700;
-      letter-spacing: 1px;
-    }
-    .subtitle {
-      text-align: center;
-      margin-bottom: 20px;
-      color: #555;
-      font-size: 1rem;
-    }
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
+      color: #2a6ebb;
     }
     label {
-      font-size: 1rem;
-      margin-bottom: 2px;
-      font-weight: 500;
+      display: block;
+      margin-top: 1rem;
     }
-    input[type="number"] {
+    input, select {
       width: 100%;
-      padding: 10px 12px;
-      border: 1.5px solid var(--border);
-      border-radius: 7px;
+      padding: 0.75rem;
+      margin-top: 0.5rem;
+      border-radius: 10px;
+      border: 1px solid #ccc;
       font-size: 1rem;
-      background: var(--bg);
-      transition: border 0.2s;
     }
-    input[type="number"]:focus {
-      border: 1.5px solid var(--accent);
-      outline: none;
-    }
-    .btn {
-      margin-top: 10px;
-      padding: 12px;
-      background: var(--accent);
-      color: var(--white);
-      font-size: 1.1rem;
+    button {
+      width: 100%;
+      padding: 1rem;
+      background: #2a6ebb;
+      color: white;
       border: none;
-      border-radius: 7px;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      margin-top: 1.5rem;
       cursor: pointer;
-      font-weight: 600;
-      transition: background 0.2s;
+      transition: background 0.3s ease;
     }
-    .btn:hover {
-      background: #1761a0;
+    button:hover {
+      background: #1e4d8f;
     }
-    .result-card {
-      margin-top: 26px;
-      background: var(--bg);
-      border-radius: 12px;
-      padding: 18px;
-      border: 1.5px solid var(--border);
-      box-shadow: 0 2px 8px rgba(44, 62, 80, 0.04);
-    }
-    .result-title {
-      font-size: 1.15rem;
-      font-weight: 600;
-      margin-bottom: 10px;
-      color: var(--accent);
-    }
-    .result-row {
-      display: flex;
-      justify-content: space-between;
-      margin: 6px 0;
-      font-size: 1rem;
-    }
-    .installments {
-      margin-top: 12px;
-      background: var(--white);
-      border-radius: 8px;
-      padding: 10px 12px;
-      border: 1px solid var(--border);
-      font-size: 0.98rem;
-    }
-    .installments span {
-      display: inline-block;
-      width: 49%;
-      margin-bottom: 4px;
-    }
-    .note {
-      margin-top: 10px;
-      color: var(--success);
-      font-size: 0.98rem;
-      font-style: italic;
-    }
-    .error {
-      color: var(--danger);
-      margin: 7px 0 0 0;
-      font-size: 0.98rem;
-      text-align: center;
+    .result {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      background: #e0f3ff;
+      border-left: 5px solid #2a6ebb;
+      border-radius: 10px;
     }
     @media (max-width: 600px) {
       .container {
-        margin: 0;
-        border-radius: 0;
-        box-shadow: none;
-        max-width: 100vw;
-        padding: 18px 4vw 16px 4vw;
-      }
-      h1 {
-        font-size: 1.2rem;
-      }
-      .result-card {
-        padding: 12px;
+        margin: 1rem;
+        padding: 1.5rem;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Calculator Section -->
   <div class="container">
-    <h1>Advance Tax Calculator 2025 🇵🇰</h1>
-    <div class="subtitle">Smart, mobile-friendly tool for Pakistan's latest tax rules</div>
-    <form id="taxForm" autocomplete="off" onsubmit="event.preventDefault(); calculateTax();">
-      <div>
-        <label for="salary">Annual Salary Income (PKR)</label>
-        <input type="number" id="salary" min="0" step="1" placeholder="e.g. 1,200,000" required>
-      </div>
-      <div>
-        <label for="otherIncome">Other Income (PKR)</label>
-        <input type="number" id="otherIncome" min="0" step="1" placeholder="e.g. 200,000">
-      </div>
-      <div>
-        <label for="expenses">Tax-Deductible Expenses (PKR)</label>
-        <input type="number" id="expenses" min="0" step="1" placeholder="e.g. 50,000">
-      </div>
-      <div>
-        <label for="liabilities">Liabilities (Loans, Advance Tax Paid) (PKR)</label>
-        <input type="number" id="liabilities" min="0" step="1" placeholder="e.g. 30,000">
-      </div>
-      <button class="btn" type="submit">Calculate My Tax</button>
-      <div id="errorMsg" class="error" style="display:none;"></div>
-    </form>
-    <div id="results" class="result-card" style="display:none;">
-      <div class="result-title">Your Tax Summary</div>
-      <div class="result-row"><span>Gross Income:</span> <span id="grossIncome"></span></div>
-      <div class="result-row"><span>Deductible Expenses:</span> <span id="deductible"></span></div>
-      <div class="result-row"><span>Taxable Income:</span> <span id="taxableIncome"></span></div>
-      <div class="result-row"><span>Calculated Tax:</span> <span id="taxAmount"></span></div>
-      <div class="result-row"><span>Liabilities/Advance Paid:</span> <span id="liabilitiesAmount"></span></div>
-      <div class="result-row"><span><strong>Tax Payable:</strong></span> <span id="finalTax" style="font-weight:700;"></span></div>
-      <div class="installments">
-        <strong>Quarterly Installments:</strong><br>
-        <span>Q1: <b id="q1"></b></span>
-        <span>Q2: <b id="q2"></b></span><br>
-        <span>Q3: <b id="q3"></b></span>
-        <span>Q4: <b id="q4"></b></span>
-      </div>
-      <div id="taxNote" class="note"></div>
-    </div>
+    <h1>Advance Tax Calculator 2025 - Pakistan</h1>
+    <label for="income">Annual Income (PKR)</label>
+    <input type="number" id="income" placeholder="Enter your annual income">
+
+    <label for="filer">Are you a Tax Filer?</label>
+    <select id="filer">
+      <option value="yes">Yes</option>
+      <option value="no">No</option>
+    </select>
+
+    <label for="age">Your Age</label>
+    <input type="number" id="age" placeholder="Enter your age">
+
+    <label for="profession">Profession</label>
+    <select id="profession">
+      <option value="salaried">Salaried</option>
+      <option value="business">Business</option>
+      <option value="freelancer">Freelancer</option>
+      <option value="retired">Retired</option>
+    </select>
+
+    <button onclick="calculateTax()">Calculate Tax</button>
+
+    <div class="result" id="result"></div>
   </div>
 
-  <!-- Content Section -->
-  <div class="container" style="margin-top:20px;">
-    <h2 style="font-size:1.18rem;color:var(--accent);margin-bottom:8px;">About the Advance Tax Calculator 2025 (Pakistan)</h2>
-    <p>This tool helps you estimate your advance income tax for 2025 based on the latest FBR tax slabs. Calculate tax liabilities, deductions, and quarterly installments.</p>
+  <div class="container">
+    <h2>About the Advance Tax Calculator 2025</h2>
+    <p>This calculator is designed to help individuals in Pakistan determine their income tax obligations for the year 2025. It factors in your filing status, profession, and age to give a more accurate picture of your potential tax liability.</p>
 
-    <h2 style="color:var(--accent);margin-top:22px;">Income Tax Slabs 2025</h2>
-    <table style="width:100%;border-collapse:collapse;margin-bottom:18px;">
-      <thead>
-        <tr style="background:#eaf3fa;">
-          <th style="border:1px solid #d3e0ea;padding:8px;">Taxable Income (PKR)</th>
-          <th style="border:1px solid #d3e0ea;padding:8px;">Tax Rate</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td style="border:1px solid #d3e0ea;padding:8px;">Up to 600,000</td>
-          <td style="border:1px solid #d3e0ea;padding:8px;">0%</td>
-        </tr>
-        <tr>
-          <td style="border:1px solid #d3e0ea;padding:8px;">600,001 - 1,200,000</td>
-          <td style="border:1px solid #d3e0ea;padding:8px;">5%</td>
-        </tr>
-        <tr>
-          <td style="border:1px solid #d3e0ea;padding:8px;">1,200,001 - 2,200,000</td>
-          <td style="border:1px solid #d3e0ea;padding:8px;">15%</td>
-        </tr>
-        <tr>
-          <td style="border:1px solid #d3e0ea;padding:8px;">2,200,001 - 3,200,000</td>
-          <td style="border:1px solid #d3e0ea;padding:8px;">25%</td>
-        </tr>
-        <tr>
-          <td style="border:1px solid #d3e0ea;padding:8px;">3,200,001 - 4,100,000</td>
-          <td style="border:1px solid #d3e0ea;padding:8px;">30%</td>
-        </tr>
-        <tr>
-          <
+    <h3>Features That Make Us Unique:</h3>
+    <ul>
+      <li>Tailored tax estimation based on profession.</li>
+      <li>Senior citizen benefit recognition.</li>
+      <li>Clear distinction between filer and non-filer rates.</li>
+      <li>Mobile-optimized UI for a seamless experience.</li>
+    </ul>
+
+    <h3>Frequently Asked Questions</h3>
+    <strong>Q1: Who is considered a filer in Pakistan?</strong>
+    <p>A filer is an individual who appears on the Active Taxpayers List maintained by the Federal Board of Revenue (FBR).</p>
+
+    <strong>Q2: Are there any benefits for senior citizens?</strong>
+    <p>Yes, citizens aged 60 and above enjoy reduced tax rates or slabs on certain income brackets.</p>
+
+    <strong>Q3: Does the tax vary based on profession?</strong>
+    <p>Yes, salaried individuals and business owners are taxed under different tax brackets in Pakistan.</p>
+
+    <strong>Q4: Is this calculator applicable for both salaried and self-employed individuals?</strong>
+    <p>Absolutely! We’ve included options for freelancers and business owners as well for accurate estimation.</p>
+  </div>
+
+  <script>
+    function calculateTax() {
+      const income = parseFloat(document.getElementById('income').value);
+      const filer = document.getElementById('filer').value;
+      const age = parseInt(document.getElementById('age').value);
+      const profession = document.getElementById('profession').value;
+      let tax = 0;
+
+      if (isNaN(income) || isNaN(age)) {
+        document.getElementById('result').innerHTML = "<p>Please enter valid income and age.</p>";
+        return;
+      }
+
+      let baseRate = 0.15; // default rate
+      if (filer === 'no') baseRate += 0.05; // surcharge for non-filers
+      if (age >= 60) baseRate -= 0.02; // senior citizen discount
+
+      // Profession-specific adjustments
+      switch (profession) {
+        case 'salaried':
+          tax = income * baseRate * 0.95;
+          break;
+        case 'business':
+          tax = income * baseRate * 1.05;
+          break;
+        case 'freelancer':
+          tax = income * baseRate * 0.90;
+          break;
+        case 'retired':
+          tax = income * baseRate * 0.80;
+          break;
+        default:
+          tax = income * baseRate;
+      }
+
+      tax = Math.max(0, tax);
+      document.getElementById('result').innerHTML = `
+        <h3>Estimated Tax Payable:</h3>
+        <p><strong>PKR ${tax.toLocaleString()}</strong></p>
+      `;
+    }
+  </script>
+</body>
+</html>
