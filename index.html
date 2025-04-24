@@ -9,80 +9,160 @@
       box-sizing: border-box;
     }
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Poppins', sans-serif;
       margin: 0;
       padding: 0;
-      background: #f5f7fa;
+      background: linear-gradient(135deg, #e3f2fd, #ffffff);
       color: #333;
+      transition: background 0.5s ease, color 0.5s ease;
+    }
+    header, footer {
+      background-color: #1d4ed8;
+      color: white;
+      padding: 1rem;
+      text-align: center;
     }
     .container {
-      max-width: 600px;
-      margin: 2rem auto;
+      max-width: 500px;
+      margin: 1.5rem auto;
       background: #fff;
-      padding: 2rem;
-      border-radius: 15px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      padding: 2rem 1.5rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 1s ease;
     }
     h1, h2, h3 {
       text-align: center;
-      color: #2a6ebb;
+      color: #1d4ed8;
+      animation: slideIn 0.6s ease-in-out;
     }
     label {
       display: block;
-      margin-top: 1rem;
+      margin-top: 1.2rem;
+      font-weight: 500;
     }
     input, select {
       width: 100%;
-      padding: 0.75rem;
+      padding: 0.9rem;
       margin-top: 0.5rem;
-      border-radius: 10px;
+      border-radius: 12px;
       border: 1px solid #ccc;
       font-size: 1rem;
+      transition: border 0.2s;
+    }
+    input:focus, select:focus {
+      border-color: #1d4ed8;
+      outline: none;
     }
     button {
       width: 100%;
       padding: 1rem;
-      background: #2a6ebb;
+      background: #1d4ed8;
       color: white;
       border: none;
-      border-radius: 10px;
+      border-radius: 12px;
       font-size: 1.1rem;
-      margin-top: 1.5rem;
+      margin-top: 1rem;
       cursor: pointer;
       transition: background 0.3s ease;
     }
     button:hover {
-      background: #1e4d8f;
+      background: #1e40af;
     }
-    .result {
-      margin-top: 1.5rem;
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .btn-group button {
+      flex: 1;
+    }
+    .result, .comparison {
+      margin-top: 2rem;
       padding: 1rem;
-      background: #e0f3ff;
-      border-left: 5px solid #2a6ebb;
-      border-radius: 10px;
+      background: #eff6ff;
+      border-left: 5px solid #1d4ed8;
+      border-radius: 12px;
+      font-size: 1.1rem;
+    }
+    .toggle-mode {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: #1d4ed8;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      z-index: 1000;
+    }
+    body.dark {
+      background: #121212;
+      color: #f0f0f0;
+    }
+    body.dark .container {
+      background: #1e1e1e;
+      color: #f0f0f0;
+    }
+    body.dark input,
+    body.dark select {
+      background: #2c2c2c;
+      color: #f0f0f0;
+      border-color: #444;
+    }
+    body.dark .result,
+    body.dark .comparison {
+      background: #2b2b2b;
+      border-color: #3b82f6;
     }
     @media (max-width: 600px) {
-      .container {
-        margin: 1rem;
-        padding: 1.5rem;
+      body {
+        padding: 1rem;
       }
+      .container {
+        margin: 0 auto 1.5rem;
+        padding: 1.5rem 1rem;
+        border-radius: 16px;
+      }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(-20px); }
+      to { opacity: 1; transform: translateX(0); }
     }
   </style>
 </head>
 <body>
-  <div class="container">
+  <header>
     <h1>Advance Tax Calculator 2025 - Pakistan</h1>
-    <label for="income">Annual Income (PKR)</label>
-    <input type="number" id="income" placeholder="Enter your annual income">
+  </header>
+
+  <button class="toggle-mode" onclick="toggleTheme()">🌓</button>
+
+  <div class="container">
+    <label for="income">Primary Income (PKR)</label>
+    <input type="number" id="income" placeholder="Enter your main income">
+
+    <label for="otherIncome">Other Income Sources (PKR)</label>
+    <input type="number" id="otherIncome" placeholder="Enter other income">
+
+    <label for="expenses">Annual Expenses (PKR)</label>
+    <input type="number" id="expenses" placeholder="Enter total annual expenses">
+
+    <label for="loans">Annual Loan Payments (PKR)</label>
+    <input type="number" id="loans" placeholder="Enter total loan payments">
 
     <label for="filer">Are you a Tax Filer?</label>
     <select id="filer">
       <option value="yes">Yes</option>
       <option value="no">No</option>
     </select>
-
-    <label for="age">Your Age</label>
-    <input type="number" id="age" placeholder="Enter your age">
 
     <label for="profession">Profession</label>
     <select id="profession">
@@ -92,77 +172,103 @@
       <option value="retired">Retired</option>
     </select>
 
-    <button onclick="calculateTax()">Calculate Tax</button>
+    <div class="btn-group">
+      <button onclick="calculateTax()">Calculate Tax</button>
+      <button onclick="compareScenarios()">Compare Scenarios</button>
+      <button onclick="exportPDF()">Export PDF</button>
+      <button onclick="exportCSV()">Export CSV</button>
+    </div>
 
     <div class="result" id="result"></div>
+    <div class="comparison" id="comparison"></div>
   </div>
 
-  <div class="container">
-    <h2>About the Advance Tax Calculator 2025</h2>
-    <p>This calculator is designed to help individuals in Pakistan determine their income tax obligations for the year 2025. It factors in your filing status, profession, and age to give a more accurate picture of your potential tax liability.</p>
-
-    <h3>Features That Make Us Unique:</h3>
-    <ul>
-      <li>Tailored tax estimation based on profession.</li>
-      <li>Senior citizen benefit recognition.</li>
-      <li>Clear distinction between filer and non-filer rates.</li>
-      <li>Mobile-optimized UI for a seamless experience.</li>
-    </ul>
-
-    <h3>Frequently Asked Questions</h3>
-    <strong>Q1: Who is considered a filer in Pakistan?</strong>
-    <p>A filer is an individual who appears on the Active Taxpayers List maintained by the Federal Board of Revenue (FBR).</p>
-
-    <strong>Q2: Are there any benefits for senior citizens?</strong>
-    <p>Yes, citizens aged 60 and above enjoy reduced tax rates or slabs on certain income brackets.</p>
-
-    <strong>Q3: Does the tax vary based on profession?</strong>
-    <p>Yes, salaried individuals and business owners are taxed under different tax brackets in Pakistan.</p>
-
-    <strong>Q4: Is this calculator applicable for both salaried and self-employed individuals?</strong>
-    <p>Absolutely! We’ve included options for freelancers and business owners as well for accurate estimation.</p>
-  </div>
+  <footer>
+    Made by Muhammad Azeem Bhatti from SEBT-X
+  </footer>
 
   <script>
-    function calculateTax() {
-      const income = parseFloat(document.getElementById('income').value);
-      const filer = document.getElementById('filer').value;
-      const age = parseInt(document.getElementById('age').value);
-      const profession = document.getElementById('profession').value;
-      let tax = 0;
+    function calculateTax(income, otherIncome, expenses, loans, filer, profession) {
+      income = parseFloat(income ?? document.getElementById('income').value) || 0;
+      otherIncome = parseFloat(otherIncome ?? document.getElementById('otherIncome').value) || 0;
+      expenses = parseFloat(expenses ?? document.getElementById('expenses').value) || 0;
+      loans = parseFloat(loans ?? document.getElementById('loans').value) || 0;
+      filer = filer ?? document.getElementById('filer').value;
+      profession = profession ?? document.getElementById('profession').value;
 
-      if (isNaN(income) || isNaN(age)) {
-        document.getElementById('result').innerHTML = "<p>Please enter valid income and age.</p>";
-        return;
-      }
+      const totalIncome = income + otherIncome;
+      const deductions = expenses + loans;
+      const taxableIncome = Math.max(0, totalIncome - deductions);
 
-      let baseRate = 0.15; // default rate
-      if (filer === 'no') baseRate += 0.05; // surcharge for non-filers
-      if (age >= 60) baseRate -= 0.02; // senior citizen discount
+      let baseRate = 0.15;
+      if (filer === 'no') baseRate += 0.05;
 
-      // Profession-specific adjustments
+      let modifier = 1;
       switch (profession) {
-        case 'salaried':
-          tax = income * baseRate * 0.95;
-          break;
-        case 'business':
-          tax = income * baseRate * 1.05;
-          break;
-        case 'freelancer':
-          tax = income * baseRate * 0.90;
-          break;
-        case 'retired':
-          tax = income * baseRate * 0.80;
-          break;
-        default:
-          tax = income * baseRate;
+        case 'salaried': modifier = 0.95; break;
+        case 'business': modifier = 1.05; break;
+        case 'freelancer': modifier = 0.90; break;
+        case 'retired': modifier = 0.80; break;
       }
 
-      tax = Math.max(0, tax);
-      document.getElementById('result').innerHTML = `
+      const tax = taxableIncome * baseRate * modifier;
+
+      const resultHTML = `
         <h3>Estimated Tax Payable:</h3>
         <p><strong>PKR ${tax.toLocaleString()}</strong></p>
+        <p><em>(Taxable Income: PKR ${taxableIncome.toLocaleString()})</em></p>
       `;
+      document.getElementById('result').innerHTML = resultHTML;
+      return { tax, taxableIncome };
+    }
+
+    function toggleTheme() {
+      document.body.classList.toggle('dark');
+    }
+
+    function exportPDF() {
+      const result = document.getElementById('result').innerText;
+      const win = window.open('', '', 'height=700,width=700');
+      win.document.write('<html><head><title>Tax Report</title></head><body>');
+      win.document.write('<h1>Tax Report 2025</h1>');
+      win.document.write(`<pre>${result}</pre>`);
+      win.document.write('</body></html>');
+      win.document.close();
+      win.print();
+    }
+
+    function exportCSV() {
+      const income = document.getElementById('income').value || 0;
+      const otherIncome = document.getElementById('otherIncome').value || 0;
+      const expenses = document.getElementById('expenses').value || 0;
+      const loans = document.getElementById('loans').value || 0;
+      const filer = document.getElementById('filer').value;
+      const profession = document.getElementById('profession').value;
+      const { tax, taxableIncome } = calculateTax(income, otherIncome, expenses, loans, filer, profession);
+
+      const csvContent = `Primary Income,Other Income,Expenses,Loans,Filer,Profession,Taxable Income,Estimated Tax\n${income},${otherIncome},${expenses},${loans},${filer},${profession},${taxableIncome},${tax}\n`;
+
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.setAttribute("href", url);
+      link.setAttribute("download", "tax_report_2025.csv");
+      link.style.visibility = 'hidden';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    function compareScenarios() {
+      const scenarioA = calculateTax();
+      const scenarioB = calculateTax(1500000, 100000, 200000, 100000, 'no', 'business');
+
+      const comparisonHTML = `
+        <h3>Scenario Comparison</h3>
+        <p><strong>Scenario A</strong>: PKR ${scenarioA.tax.toLocaleString()} (Taxable: PKR ${scenarioA.taxableIncome.toLocaleString()})</p>
+        <p><strong>Scenario B</strong>: PKR ${scenarioB.tax.toLocaleString()} (Taxable: PKR ${scenarioB.taxableIncome.toLocaleString()})</p>
+      `;
+      document.getElementById('comparison').innerHTML = comparisonHTML;
     }
   </script>
 </body>
