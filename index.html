@@ -1,266 +1,240 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Pakistan Salary Tax Calculator 2025 | Calculate Net Salary with Deductions</title>
-  <meta name="description" content="Use our advanced 2025 Pakistan income tax calculator to estimate your tax liability, view quarterly installments, and compare with previous years. Mobile-friendly & updated"/>
-<meta name="robots" content="index,follow">
-    <link rel="canonical" href="https://salarytax-calculator.netlify.app">
-    <style>
-    /* Base Styles */
-    :root {
-      --primary-color: #2c3e50;
-      --secondary-color: #3498db;
-      --accent-color: #e74c3c;
+  <meta charset="UTF-8">
+  <title>Advance Tax Calculator 2025 Pakistan | Accurate & Mobile Friendly</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Calculate your advance income tax in Pakistan for 2025 with our smart, mobile-optimized calculator. Includes income, expenses, liabilities, other income, and quarterly breakdown.">
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "FinancialService",
+    "name": "Advance Tax Calculator 2025 Pakistan",
+    "description": "A free, accurate, and mobile-friendly advance tax calculator for Pakistan with income, expenses, liabilities, and other income sources.",
+    "url": "https://example.com",
+    "serviceType": "Tax Calculation",
+    "provider": {
+      "@type": "Organization",
+      "name": "YourBrand"
     }
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+  }
+  </script>
+  <style>
+    :root {
+      --main: #0b2239;
+      --accent: #2e86de;
+      --bg: #f8fafc;
+      --white: #fff;
+      --border: #e3e3e3;
+      --success: #27ae60;
+      --danger: #e74c3c;
     }
     body {
-      font-family: 'Helvetica Neue', Arial, sans-serif;
-      background: #f8f9fa;
-      color: var(--primary-color);
-      line-height: 1.6;
+      margin: 0;
+      background: var(--bg);
+      color: var(--main);
+      font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+      min-height: 100vh;
     }
     .container {
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 1.5rem;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      max-width: 420px;
+      margin: 32px auto;
+      background: var(--white);
+      padding: 28px 20px 22px 20px;
+      border-radius: 18px;
+      box-shadow: 0 6px 32px rgba(44, 62, 80, 0.09);
     }
     h1 {
-      color: var(--primary-color);
+      font-size: 1.5rem;
       text-align: center;
-      margin-bottom: 1.5rem;
-      font-size: 2rem;
+      margin-bottom: 8px;
+      color: var(--accent);
+      font-weight: 700;
+      letter-spacing: 1px;
     }
-
-    /* Form Styles */
-    .calculator-section {
-      margin-bottom: 1.5rem;
-      padding: 1rem;
-      border: 1px solid #eee;
-      border-radius: 8px;
+    .subtitle {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #555;
+      font-size: 1rem;
     }
-    .section-toggle {
-      background: var(--secondary-color);
-      color: white;
-      padding: 0.5rem 1rem;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      width: 100%;
-      text-align: left;
-      margin-bottom: 0.5rem;
-    }
-    .input-group {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-      margin-bottom: 1rem;
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
     }
     label {
-      display: block;
-      margin-bottom: 0.5rem;
-      color: var(--primary-color);
+      font-size: 1rem;
+      margin-bottom: 2px;
       font-weight: 500;
     }
-    input, select {
+    input[type="number"] {
       width: 100%;
-      padding: 0.8rem;
-      border: 1px solid #ddd;
-      border-radius: 4px;
+      padding: 10px 12px;
+      border: 1.5px solid var(--border);
+      border-radius: 7px;
       font-size: 1rem;
-      transition: border-color 0.3s;
+      background: var(--bg);
+      transition: border 0.2s;
     }
-    input:focus, select:focus {
-      border-color: var(--secondary-color);
+    input[type="number"]:focus {
+      border: 1.5px solid var(--accent);
       outline: none;
     }
-
-    /* Results Section */
-    .results {
-      background: #f8f9fa;
-      padding: 1.5rem;
-      border-radius: 8px;
-      margin-top: 1.5rem;
+    .btn {
+      margin-top: 10px;
+      padding: 12px;
+      background: var(--accent);
+      color: var(--white);
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 7px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.2s;
     }
-    .result-item {
+    .btn:hover {
+      background: #1761a0;
+    }
+    .result-card {
+      margin-top: 26px;
+      background: var(--bg);
+      border-radius: 12px;
+      padding: 18px;
+      border: 1.5px solid var(--border);
+      box-shadow: 0 2px 8px rgba(44, 62, 80, 0.04);
+    }
+    .result-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: var(--accent);
+    }
+    .result-row {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 0.8rem;
-      padding: 0.5rem 0;
-      border-bottom: 1px solid #eee;
+      margin: 6px 0;
+      font-size: 1rem;
     }
-    .result-value {
-      color: var(--secondary-color);
-      font-weight: 600;
+    .installments {
+      margin-top: 12px;
+      background: var(--white);
+      border-radius: 8px;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      font-size: 0.98rem;
     }
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
+    .installments span {
+      display: inline-block;
+      width: 49%;
+      margin-bottom: 4px;
+    }
+    .note {
+      margin-top: 10px;
+      color: var(--success);
+      font-size: 0.98rem;
+      font-style: italic;
+    }
+    .error {
+      color: var(--danger);
+      margin: 7px 0 0 0;
+      font-size: 0.98rem;
+      text-align: center;
+    }
+    @media (max-width: 600px) {
       .container {
-        margin: 1rem;
-        padding: 1rem;
+        margin: 0;
+        border-radius: 0;
+        box-shadow: none;
+        max-width: 100vw;
+        padding: 18px 4vw 16px 4vw;
       }
-      .input-group {
-        grid-template-columns: 1fr;
+      h1 {
+        font-size: 1.2rem;
+      }
+      .result-card {
+        padding: 12px;
       }
     }
   </style>
 </head>
 <body>
+  <!-- Calculator Section -->
   <div class="container">
-    <h1>Pakistan Salary Tax Calculator</h1>
-    
-    <div class="calculator-section">
-      <div class="input-group">
-        <div>
-          <label for="taxYear">Tax Year:</label>
-          <select id="taxYear">
-            <option value="2024">2024-25</option>
-            <option value="2023">2023-24</option>
-          </select>
-        </div>
-        <div>
-          <label for="annualSalary">Annual Salary (PKR):</label>
-          <input type="number" id="annualSalary" placeholder="1,200,000" step="1000">
-        </div>
+    <h1>Advance Tax Calculator 2025 🇵🇰</h1>
+    <div class="subtitle">Smart, mobile-friendly tool for Pakistan's latest tax rules</div>
+    <form id="taxForm" autocomplete="off" onsubmit="event.preventDefault(); calculateTax();">
+      <div>
+        <label for="salary">Annual Salary Income (PKR)</label>
+        <input type="number" id="salary" min="0" step="1" placeholder="e.g. 1,200,000" required>
       </div>
-    </div>
-
-    <!-- Deductions Section -->
-    <div class="calculator-section">
-      <button class="section-toggle" type="button">▼ Deductions</button>
-      <div class="input-group">
-        <div>
-          <label for="medicalExpenses">Medical Expenses:</label>
-          <input type="number" id="medicalExpenses" step="1000">
-        </div>
-        <div>
-          <label for="charity">Charitable Donations:</label>
-          <input type="number" id="charity" step="1000">
-        </div>
+      <div>
+        <label for="otherIncome">Other Income (PKR)</label>
+        <input type="number" id="otherIncome" min="0" step="1" placeholder="e.g. 200,000">
       </div>
-    </div>
-
-    <!-- Benefits Section -->
-    <div class="calculator-section">
-      <button class="section-toggle" type="button">▼ Benefits & Allowances</button>
-      <div class="input-group">
-        <div>
-          <label for="housingAllowance">Housing Allowance:</label>
-          <input type="number" id="housingAllowance" step="1000">
-        </div>
-        <div>
-          <label for="conveyanceAllowance">Conveyance Allowance:</label>
-          <input type="number" id="conveyanceAllowance" step="1000">
-        </div>
+      <div>
+        <label for="expenses">Tax-Deductible Expenses (PKR)</label>
+        <input type="number" id="expenses" min="0" step="1" placeholder="e.g. 50,000">
       </div>
-    </div>
-
-    <!-- Results -->
-    <div class="results">
-      <div class="result-item">
-        <span>Annual Taxable Income:</span>
-        <span class="result-value" id="taxableIncome">0</span>
+      <div>
+        <label for="liabilities">Liabilities (Loans, Advance Tax Paid) (PKR)</label>
+        <input type="number" id="liabilities" min="0" step="1" placeholder="e.g. 30,000">
       </div>
-      <div class="result-item">
-        <span>Total Tax Payable:</span>
-        <span class="result-value" id="totalTax">0</span>
+      <button class="btn" type="submit">Calculate My Tax</button>
+      <div id="errorMsg" class="error" style="display:none;"></div>
+    </form>
+    <div id="results" class="result-card" style="display:none;">
+      <div class="result-title">Your Tax Summary</div>
+      <div class="result-row"><span>Gross Income:</span> <span id="grossIncome"></span></div>
+      <div class="result-row"><span>Deductible Expenses:</span> <span id="deductible"></span></div>
+      <div class="result-row"><span>Taxable Income:</span> <span id="taxableIncome"></span></div>
+      <div class="result-row"><span>Calculated Tax:</span> <span id="taxAmount"></span></div>
+      <div class="result-row"><span>Liabilities/Advance Paid:</span> <span id="liabilitiesAmount"></span></div>
+      <div class="result-row"><span><strong>Tax Payable:</strong></span> <span id="finalTax" style="font-weight:700;"></span></div>
+      <div class="installments">
+        <strong>Quarterly Installments:</strong><br>
+        <span>Q1: <b id="q1"></b></span>
+        <span>Q2: <b id="q2"></b></span><br>
+        <span>Q3: <b id="q3"></b></span>
+        <span>Q4: <b id="q4"></b></span>
       </div>
-      <div class="result-item">
-        <span>Monthly Net Salary:</span>
-        <span class="result-value" id="netSalary">0</span>
-      </div>
+      <div id="taxNote" class="note"></div>
     </div>
   </div>
 
-  <script>
-    // Tax Slabs Data
-    const taxSlabs = {
-      2023: [
-        { max: 600000, rate: 0 },
-        { max: 1200000, rate: 0.05 },
-        { max: 2400000, rate: 0.15 },
-        { max: 3600000, rate: 0.25 },
-        { max: Infinity, rate: 0.35 }
-      ],
-      2024: [
-        { max: 600000, rate: 0 },
-        { max: 1200000, rate: 0.05 },
-        { max: 2200000, rate: 0.15 },
-        { max: 3200000, rate: 0.25 },
-        { max: 4100000, rate: 0.30 },
-        { max: Infinity, rate: 0.35 }
-      ]
-    };
+  <!-- Content Section -->
+  <div class="container" style="margin-top:20px;">
+    <h2 style="font-size:1.18rem;color:var(--accent);margin-bottom:8px;">About the Advance Tax Calculator 2025 (Pakistan)</h2>
+    <p>This tool helps you estimate your advance income tax for 2025 based on the latest FBR tax slabs. Calculate tax liabilities, deductions, and quarterly installments.</p>
 
-    // Calculator Function
-    function calculateTax() {
-      // Get Input Values
-      const taxYear = document.getElementById('taxYear').value;
-      const annualSalary = parseFloat(document.getElementById('annualSalary').value) || 0;
-      const medicalExpenses = parseFloat(document.getElementById('medicalExpenses').value) || 0;
-      const charity = parseFloat(document.getElementById('charity').value) || 0;
-      const housingAllowance = parseFloat(document.getElementById('housingAllowance').value) || 0;
-      const conveyanceAllowance = parseFloat(document.getElementById('conveyanceAllowance').value) || 0;
-
-      // Calculate Taxable Income
-      const taxableIncome = annualSalary - medicalExpenses - charity + housingAllowance + conveyanceAllowance;
-      
-      // Get Appropriate Tax Slabs
-      const slabs = taxSlabs[taxYear];
-      let remainingIncome = taxableIncome;
-      let totalTax = 0;
-
-      for (let i = 0; i < slabs.length; i++) {
-        const currentSlab = slabs[i];
-        const previousSlab = slabs[i-1] ? slabs[i-1].max : 0;
-        
-        if (remainingIncome > currentSlab.max) {
-          totalTax += (currentSlab.max - previousSlab) * currentSlab.rate;
-          remainingIncome -= (currentSlab.max - previousSlab);
-        } else {
-          totalTax += remainingIncome * currentSlab.rate;
-          break;
-        }
-      }
-
-      // Update UI
-      const formatter = new Intl.NumberFormat('en-PK', {
-        style: 'currency',
-        currency: 'PKR',
-        maximumFractionDigits: 0
-      });
-
-      document.getElementById('taxableIncome').textContent = formatter.format(taxableIncome);
-      document.getElementById('totalTax').textContent = formatter.format(totalTax);
-      document.getElementById('netSalary').textContent = formatter.format((annualSalary - totalTax) / 12);
-    }
-
-    // Event Listeners
-    document.querySelectorAll('input, select').forEach(element => {
-      element.addEventListener('input', calculateTax);
-    });
-
-    // Section Toggles
-    document.querySelectorAll('.section-toggle').forEach(button => {
-      button.addEventListener('click', () => {
-        const section = button.parentElement;
-        const inputs = section.querySelector('.input-group');
-        inputs.style.display = inputs.style.display === 'none' ? 'grid' : 'none';
-        button.textContent = inputs.style.display === 'none' ? '▶' : '▼';
-      });
-    });
-
-    // Initial Calculation
-    calculateTax();
-  </script>
-</body>
-</html>
+    <h2 style="color:var(--accent);margin-top:22px;">Income Tax Slabs 2025</h2>
+    <table style="width:100%;border-collapse:collapse;margin-bottom:18px;">
+      <thead>
+        <tr style="background:#eaf3fa;">
+          <th style="border:1px solid #d3e0ea;padding:8px;">Taxable Income (PKR)</th>
+          <th style="border:1px solid #d3e0ea;padding:8px;">Tax Rate</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="border:1px solid #d3e0ea;padding:8px;">Up to 600,000</td>
+          <td style="border:1px solid #d3e0ea;padding:8px;">0%</td>
+        </tr>
+        <tr>
+          <td style="border:1px solid #d3e0ea;padding:8px;">600,001 - 1,200,000</td>
+          <td style="border:1px solid #d3e0ea;padding:8px;">5%</td>
+        </tr>
+        <tr>
+          <td style="border:1px solid #d3e0ea;padding:8px;">1,200,001 - 2,200,000</td>
+          <td style="border:1px solid #d3e0ea;padding:8px;">15%</td>
+        </tr>
+        <tr>
+          <td style="border:1px solid #d3e0ea;padding:8px;">2,200,001 - 3,200,000</td>
+          <td style="border:1px solid #d3e0ea;padding:8px;">25%</td>
+        </tr>
+        <tr>
+          <td style="border:1px solid #d3e0ea;padding:8px;">3,200,001 - 4,100,000</td>
+          <td style="border:1px solid #d3e0ea;padding:8px;">30%</td>
+        </tr>
+        <tr>
+          <
